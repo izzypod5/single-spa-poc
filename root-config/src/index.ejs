@@ -50,9 +50,16 @@
     {
       "imports": {
         "@single-spa/welcome": "https://unpkg.com/single-spa-welcome/dist/single-spa-welcome.js",
-        "@single-spa/root-config": "//localhost:9000/single-spa-root-config.js",
-        "app1": "//localhost:4200/main.js",
-        "app2": "//localhost:4201/main.js"
+        "@angular-mf/root-config": "//localhost:9000/angular-mf-root-config.js",
+        "@angular/core": "https://cdn.jsdelivr.net/npm/@esm-bundle/angular__core@11.1.1/system/es2015/ivy/angular-core.min.js",
+        "@angular/common": "https://cdn.jsdelivr.net/npm/@esm-bundle/angular__common@11.1.1/system/es2015/ivy/angular-common.min.js",
+        "@angular/router": "https://cdn.jsdelivr.net/npm/@esm-bundle/angular__router@11.1.1/system/es2015/ivy/angular-router.min.js",
+        "@angular/platform-browser": "https://cdn.jsdelivr.net/npm/@esm-bundle/angular__platform-browser@11.1.1/system/es2015/ivy/angular-platform-browser.min.js",
+        "@ionic/angular": "https://cdn.jsdelivr.net/npm/ionic-angular@3.9.10/umd/index.min.js",
+        "@angular-mf/utility-core": "//localhost:8081/angular-mf-utility-core.js",        
+        "@angular-mf/app1": "//localhost:4200/main.js",
+        "@angular-mf/app2": "//localhost:4201/main.js",
+        "@angular-mf/ionic-app1": "//localhost:4202/main.js"
       }
     }
   </script>
@@ -68,9 +75,11 @@
       <% if (isLocal) { %>
         <script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/system.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/extras/amd.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/extras/named-exports.js"></script>
         <% } else { %>
           <script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/system.min.js"></script>
           <script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/extras/amd.min.js"></script>
+          <script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/extras/named-exports.js"></script>
           <% } %>
 
             <template id="single-spa-layout">
@@ -83,10 +92,13 @@
                     <application name="@single-spa/welcome"></application>
                   </route>
                   <route path="app1">
-                    <application name="app1"></application>
+                    <application name="@angular-mf/app1"></application>
                   </route>
                   <route path="app2">
-                    <application name="app2"></application>
+                    <application name="@angular-mf/app2"></application>
+                  </route>
+                  <route path="ionic">
+                    <application name="@angular-mf/ionic-app1"></application>
                   </route>
                 </main>
               </single-spa-router>
@@ -95,7 +107,7 @@
 
 <body>
   <script>
-    System.import('@single-spa/root-config');
+    System.import('@angular-mf/root-config');
   </script>
   <import-map-overrides-full show-when-local-storage="devtools" dev-libs></import-map-overrides-full>
 </body>
